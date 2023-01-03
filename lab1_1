@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<math.h>
+void hcase(int n) {
+	for (int i = 1;i < 100;i++) {
+		if (n % i == 0) {
+			printf("%d ", i);
+		}
+	}
+}
+void pcase(int n){
+	int flag = 0;
+	for (int i = 1; i <= n / 2;i++) {
+		if (n % i == 0)
+			flag = 1;
+	}
+	if (flag)
+		printf("Not simple");
+	else
+		printf("simple");
+}
+void scase(int n) {
+	int r = 0, a = n, p;
+	for (r; a != 0; r++) {
+		a /= 10;
+	}
+	for (r; n != 0;r--) {
+		p = pow(10, r-1);
+		printf("%d ", n / p);
+		n = n % p;
+	}
+}
+void ecase(int n) {
+	long long int p;
+	for (int i = 1; i <= 10;i++) {
+		for (int j = 1; j <= n;j++) {
+			p = pow(i, j);
+			printf("%lld", p);
+		}
+		printf("\n");
+	}
+}
+
+void acase(int n) {
+	int s = (1 + n) * n / 2;
+	printf("%d", s);
+}
+
+void fcase(int n) {
+	long long f = 1;
+	for (int i = 1; i <= n;i++) {
+		f *= i;
+	}
+	printf("%lld", f);
+}
+int main(int argc, char** argv) {
+	int fl = 1;
+	for (int i = 0; i < strlen(argv[1]); i++) {
+		if (argv[1][i] > '9' || argv[1][i] < '0')
+			fl = 0;
+	}
+	
+	if (strlen(argv[2]) == 2 && argc == 3
+		&& (argv[2][0] == '-' || argv[2][0] == '/') && fl) {
+		int n = atoi(argv[1]);
+		switch (argv[2][1]) {
+			case 'h':
+				hcase(n);
+			break;
+			case 'p':
+				pcase(n);
+			break;
+			case 's':
+				scase(n);
+			break;
+			case 'e':
+				ecase(n);
+			break;
+			case 'a':
+				acase(n);
+			break;
+			case 'f':
+				fcase(n);
+
+		}
+	}
+	else{
+		printf("Invalid data");
+	}
+	return 0;
+}
